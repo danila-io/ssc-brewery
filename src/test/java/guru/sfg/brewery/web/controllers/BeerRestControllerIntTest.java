@@ -9,7 +9,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest
-public class BeerRestControllerIT extends BaseIT {
+public class BeerRestControllerIntTest extends BaseIT {
 
     @Test
     void findBeers() throws Exception {
@@ -30,45 +30,15 @@ public class BeerRestControllerIT extends BaseIT {
     }
 
     @Test
-    void deleteBeer() throws Exception {
-        mockMvc.perform(delete("/api/v1/beer/6de204c4-57e1-4793-b2ee-48ba84c0ff9a")
-                        .header("Api-Key", "spring")
-                        .header("Api-Secret", "spring"))
-                .andExpect(status().isOk());
-    }
-
-    @Test
-    void deleteBeerBadCredentials() throws Exception {
-        mockMvc.perform(delete("/api/v1/beer/6de204c4-57e1-4793-b2ee-48ba84c0ff9a")
-                        .header("Api-Key", "spring")
-                        .header("Api-Secret", "spring123"))
-                .andExpect(status().isUnauthorized());
-    }
-
-    @Test
     void deleteBeerWithHttpBasic() throws Exception {
         mockMvc.perform(delete("/api/v1/beer/6de204c4-57e1-4793-b2ee-48ba84c0ff9a")
-                        .with(httpBasic("spring", "spring")))
+                        .with(httpBasic("spring", "guru")))
                 .andExpect(status().is2xxSuccessful());
     }
 
     @Test
     void deleteBeerNoAuth() throws Exception {
         mockMvc.perform(delete("/api/v1/beer/6de204c4-57e1-4793-b2ee-48ba84c0ff9a"))
-                .andExpect(status().isUnauthorized());
-    }
-
-    @Test
-    void deleteBeerUrl() throws Exception{
-        mockMvc.perform(delete("/api/v1/beer/97df0c39-90c4-4ae0-b663-453e8e19c311")
-                        .param("apiKey","spring").param("apiSecret", "guru"))
-                .andExpect(status().isOk());
-    }
-
-    @Test
-    void deleteBeerBadCredsUrl() throws Exception{
-        mockMvc.perform(delete("/api/v1/beer/97df0c39-90c4-4ae0-b663-453e8e19c311")
-                        .param("apiKey","spring").header("apiSecret", "guruXXXX"))
                 .andExpect(status().isUnauthorized());
     }
 }

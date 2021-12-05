@@ -12,7 +12,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 
 @SpringBootTest
-public class BeerControllerIT extends BaseIT {
+public class BeerControllerIntTest extends BaseIT {
 
     @Test
     void initCreationForm() throws Exception {
