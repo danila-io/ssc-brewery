@@ -4,6 +4,7 @@ import org.springframework.security.web.util.matcher.RequestMatcher;
 
 import javax.servlet.http.HttpServletRequest;
 
+// TODO Remove later
 public class RestUrlAuthFilter extends AbstractRestAuthFilter {
 
     public RestUrlAuthFilter(RequestMatcher requiresAuthenticationRequestMatcher) {

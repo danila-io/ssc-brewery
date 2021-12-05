@@ -18,6 +18,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+// TODO Remove later
 @Slf4j
 public abstract class AbstractRestAuthFilter extends AbstractAuthenticationProcessingFilter {
 

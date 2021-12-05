@@ -5,6 +5,7 @@ import org.springframework.security.web.util.matcher.RequestMatcher;
 
 import javax.servlet.http.HttpServletRequest;
 
+// TODO Remove later
 @Slf4j
 public class RestHeaderAuthFilter extends AbstractRestAuthFilter {
 
