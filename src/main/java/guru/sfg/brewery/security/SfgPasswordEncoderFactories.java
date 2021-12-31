@@ -7,12 +7,15 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Created by jt on 6/17/20.
+ */
 public class SfgPasswordEncoderFactories {
 
     public static PasswordEncoder createDelegatingPasswordEncoder() {
-        String encodingId = "bcrypt15";
+        String encodingId = "bcrypt10";
         Map<String, PasswordEncoder> encoders = new HashMap<>();
-        encoders.put(encodingId, new BCryptPasswordEncoder(15));
+        encoders.put(encodingId, new BCryptPasswordEncoder(10));
         encoders.put("bcrypt", new BCryptPasswordEncoder());
         encoders.put("ldap", new org.springframework.security.crypto.password.LdapShaPasswordEncoder());
         encoders.put("noop", org.springframework.security.crypto.password.NoOpPasswordEncoder.getInstance());
@@ -21,6 +24,7 @@ public class SfgPasswordEncoderFactories {
         return new DelegatingPasswordEncoder(encodingId, encoders);
     }
 
+    //don't instantiate class
     private SfgPasswordEncoderFactories() {
     }
 }
