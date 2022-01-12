@@ -11,19 +11,12 @@ import java.util.stream.Stream;
 
 import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.springSecurity;
 
-<<<<<<< HEAD
-public abstract class BaseIT {
-
-    @Autowired
-    WebApplicationContext webApplicationContext;
-=======
 /**
  * Created by jt on 6/13/20.
  */
 public abstract class BaseIT {
     @Autowired
     WebApplicationContext wac;
->>>>>>> origin/role-method-assn-delete-beer
 
     protected MockMvc mockMvc;
 

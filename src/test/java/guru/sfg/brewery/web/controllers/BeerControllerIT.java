@@ -13,13 +13,15 @@ import org.springframework.boot.test.context.SpringBootTest;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.anonymous;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.httpBasic;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
 /**
  * Created by jt on 6/12/20.
  */
 @SpringBootTest
-public class BeerControllerIT extends BaseIT{
+public class BeerControllerIT extends BaseIT {
 
     @Autowired
     BeerRepository beerRepository;
@@ -28,11 +30,10 @@ public class BeerControllerIT extends BaseIT{
     @Nested
     class InitNewForm{
 
-        @ParameterizedTest(name = "#{index} with [{arguments}]")
-        @MethodSource("guru.sfg.brewery.web.controllers.BeerControllerIT#getStreamAllUsers")
+        @Test
         void initCreationFormAuth(String user, String pwd) throws Exception {
 
-            mockMvc.perform(get("/beers/new").with(httpBasic(user, pwd)))
+            mockMvc.perform(get("/beers/new").with(httpBasic("spring", "guru")))
                     .andExpect(status().isOk())
                     .andExpect(view().name("beers/createBeer"))
                     .andExpect(model().attributeExists("beer"));
