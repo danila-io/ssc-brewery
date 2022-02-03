@@ -16,6 +16,7 @@
  */
 package guru.sfg.brewery.domain;
 
+import guru.sfg.brewery.domain.security.User;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -54,4 +55,6 @@ public class Customer extends BaseEntity {
     @OneToMany(mappedBy = "customer")
     private Set<BeerOrder> beerOrders;
 
+    @OneToMany(mappedBy = "customer")
+    private Set<User> users;
 }

@@ -1,5 +1,6 @@
 package guru.sfg.brewery.domain.security;
 
+import guru.sfg.brewery.domain.Customer;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -20,6 +21,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Transient;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -41,6 +43,9 @@ public class User implements UserDetails, CredentialsContainer {
 
     private String username;
     private String password;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    private Customer customer;
 
     @Singular
     @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST}, fetch = FetchType.EAGER)
